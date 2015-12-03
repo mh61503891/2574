@@ -4,7 +4,7 @@ var map = new mapboxgl.Map({
   container: 'map',
   style: 'mapbox://styles/mapbox/streets-v8',
   center: [position.lng, position.lat],
-  zoom: 6
+  zoom: 8
 });
 
 var sourceObj = new mapboxgl.GeoJSONSource({
