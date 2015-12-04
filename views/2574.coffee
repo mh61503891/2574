@@ -32,5 +32,5 @@ map.on 'style.load', ->
       lnglat = new mapboxgl.LngLat(lng, lat).wrap()
       map.flyTo {
         center: [lnglat.lng, lnglat.lat]
-        zoom: 15
+        zoom: 14
       }
