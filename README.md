@@ -6,5 +6,10 @@
 
 ```sh
 bundle install
-foreman start
+bundle exec foreman start
+```
+
+```sh
+bundle install
+bundle exec rake data:generate
 ```
