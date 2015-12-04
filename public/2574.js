@@ -8,7 +8,7 @@ var map = new mapboxgl.Map({
 });
 
 var sourceObj = new mapboxgl.GeoJSONSource({
-  data: 'data/all.geojson'
+  data: 'data.geojson'
 });
 
 map.on('style.load', function() {
