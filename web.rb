@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'rack/tracker'
 require 'coffee-script'
+require 'sinatra/reloader' if development?
 
 use Rack::Tracker do
   handler :google_analytics, { tracker: ENV['GOOGLE_TRACKING_ID'] }

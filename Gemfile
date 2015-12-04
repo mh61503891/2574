@@ -8,4 +8,5 @@ gem 'coffee-script', '2.4.1'
 group :development do
   gem 'foreman'
   gem 'rake'
+  gem 'sinatra-contrib'
 end
