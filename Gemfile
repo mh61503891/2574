@@ -6,4 +6,5 @@ gem 'rack-tracker', '1.1.0'
 
 group :development do
   gem 'foreman'
+  gem 'rake'
 end
