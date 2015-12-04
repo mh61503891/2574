@@ -27,7 +27,6 @@ map.on('style.load', function() {
   });
 });
 
-
 function locate() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
