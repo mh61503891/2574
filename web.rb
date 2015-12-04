@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'rack/tracker'
 require 'coffee-script'
+require 'sass'
 require 'sinatra/reloader' if development?
 
 use Rack::Tracker do
@@ -15,4 +16,8 @@ end
 
 get '/2574.js' do
   coffee :'2574'
+end
+
+get '/2574.css' do
+  sass :'2574'
 end
