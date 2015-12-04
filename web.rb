@@ -1,7 +1,10 @@
 require 'sinatra'
 require 'rack/tracker'
-require 'coffee-script'
 require 'sass'
+require 'coffee-script'
+require 'tilt/erb'
+require 'tilt/sass'
+require 'tilt/coffee'
 require 'sinatra/reloader' if development?
 
 use Rack::Tracker do
