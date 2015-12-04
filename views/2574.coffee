@@ -24,7 +24,7 @@ map.on 'style.load', ->
     }
   }
 
-locate = ->
+@locate = ->
   if navigator.geolocation
     navigator.geolocation.getCurrentPosition (position) ->
       lng = position.coords.longitude
