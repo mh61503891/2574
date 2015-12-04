@@ -31,16 +31,11 @@ def csv_to_geojson(texts)
       map['features'] << feature
     end
   end
-  return JSON.pretty_generate(map)
-end
-
-
-task :default do
-  puts 'ok'
+  return map.to_json
 end
 
 namespace :data do
-  task :test do
+  task :generate do
     texts = [24, 25, 26].map{ |year|
       'http://db.pref.tottori.jp/opendataResearch.nsf/' \
        'e92cd7f95a94c9c249257c92000236b8/' \
@@ -52,6 +47,6 @@ namespace :data do
       open(url){ |io|io.read }
     }
     x = csv_to_geojson(texts)
-    open('asserts/data.geojson', 'w'){|io| io.write(x)}
+    open('public/data.geojson', 'w'){|io| io.write(x)}
   end
 end
