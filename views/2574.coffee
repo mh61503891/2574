@@ -1,7 +1,12 @@
 mapboxgl.accessToken = "#{mapbox_access_token}"
 dishoge = 0.5
 
-source = new mapboxgl.GeoJSONSource
+source = new mapboxgl.GeoJSONSource {
+  data: {
+    type: 'FeatureCollection'
+    features: []
+  }
+}
 centerPointSource = new mapboxgl.GeoJSONSource {
   data: {
     type: 'FeatureCollection'
