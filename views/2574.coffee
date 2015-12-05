@@ -1,4 +1,6 @@
-mapboxgl.accessToken = 'pk.eyJ1IjoibWg2MTUwMzg5MSIsImEiOiJjaWhxbTJjOGMwNGt4dHBtMjczbzhieXZkIn0.J8-B8U-8nCtqiZ2CfxbV0g'
+mapboxgl.accessToken = "#{mapbox_access_token}"
+
+# mapboxgl.accessToken = 'pk.eyJ1IjoibWg2MTUwMzg5MSIsImEiOiJjaWhxbTJjOGMwNGt4dHBtMjczbzhieXZkIn0.J8-B8U-8nCtqiZ2CfxbV0g'
 position = new mapboxgl.LngLat(133.842941, 35.375086).wrap()
 map = new mapboxgl.Map {
   container: 'map'
