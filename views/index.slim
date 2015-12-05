@@ -8,9 +8,14 @@ html
     title tottori.2574.jp
     script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.12.0/mapbox-gl.js"
     link href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.12.0/mapbox-gl.css" rel="stylesheet"
+    script src="ion.sound.min.js"
+    script src="//api.tiles.mapbox.com/mapbox.js/plugins/turf/v2.0.0/turf.min.js"
     link href="2574.css" rel="stylesheet"
   body
     div#map
     br
-    button onclick="locate();" id="locate" 現在地へ移動
+    ul id="tool-buttons"
+      li onclick='locate();' class='tool-button' 現在地へ移動
+      li onclick='check();' class='tool-button' チェック
+      li onclick='navi();' class='tool-button' id='navi-button' ナビ:OFF
     script src="2574.js"
