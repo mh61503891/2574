@@ -8,7 +8,7 @@ require 'tilt/coffee'
 require 'sinatra/reloader' if development?
 
 use Rack::Tracker do
-  handler :google_analytics, { tracker: ENV['GOOGLE_TRACKING_ID'] }
+  handler :google_analytics, tracker: ENV['GOOGLE_TRACKING_ID']
 end
 set :bind, '0.0.0.0'
 
