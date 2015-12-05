@@ -6,16 +6,16 @@ require 'coffee-script'
 require 'tilt/erb'
 require 'tilt/sass'
 require 'tilt/coffee'
-require 'sinatra/reloader' if development?
 
 configure :development do
+  require 'sinatra/reloader'
+  set :bind, '0.0.0.0'
   Slim::Engine.set_default_options pretty: true
 end
 
 use Rack::Tracker do
   handler :google_analytics, tracker: ENV['GOOGLE_TRACKING_ID']
 end
-set :bind, '0.0.0.0'
 
 get '/' do
   slim :index
