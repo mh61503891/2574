@@ -12,19 +12,38 @@ map = new mapboxgl.Map {
 source = new mapboxgl.GeoJSONSource {data: 'data.geojson'}
 
 map.on 'style.load', ->
-  map.addSource('markers', source)
-  map.addLayer {
-    id: 'markers'
-    type: 'symbol'
-    source: 'markers'
-    layout: {
-      'icon-image': '{marker-symbol}-15'
-      'icon-optional': true
+  map.batch (batch) ->
+    map.addSource('markers', source)
+    map.addLayer {
+      source: 'markers'
+      id: 'markers-b'
+      type: 'circle'
+      paint: {
+        'circle-radius': 8
+        'circle-color': '#DBC300'
+      }
+      filter: ['==', '事故内容', '軽傷事故']
     }
-    paint: {
-      'icon-color': '#0000FF'
+    map.addLayer {
+      source: 'markers'
+      id: 'markers-c'
+      type: 'circle'
+      paint: {
+        'circle-radius': 8
+        'circle-color': '#FF9807'
+      }
+      filter: ['==', '事故内容', '重傷事故']
     }
-  }
+    map.addLayer {
+      source: 'markers'
+      id: 'markers-a'
+      type: 'circle'
+      paint: {
+        'circle-radius': 8
+        'circle-color': '#FD3E00'
+      }
+      filter: ['==', '事故内容', '死亡事故']
+    }
 
 @locate = ->
   if navigator.geolocation
