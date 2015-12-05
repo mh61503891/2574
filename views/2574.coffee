@@ -9,6 +9,9 @@ map = new mapboxgl.Map {
   zoom: 8
 }
 
+if not /iPhone|iPad|iPod|Android/.test(navigator.userAgent)
+  map.addControl(new mapboxgl.Navigation())
+
 source = new mapboxgl.GeoJSONSource {data: 'data.geojson'}
 
 map.on 'style.load', ->
