@@ -5,7 +5,7 @@ position = new mapboxgl.LngLat(133.842941, 35.375086).wrap()
 map = new mapboxgl.Map {
   container: 'map'
   style: 'mapbox://styles/mapbox/streets-v8'
-  center: [position.lng, position.lat]
+  center: position.toArray()
   zoom: 8
 }
 
@@ -33,6 +33,6 @@ map.on 'style.load', ->
       lat = position.coords.latitude
       lnglat = new mapboxgl.LngLat(lng, lat).wrap()
       map.flyTo {
-        center: [lnglat.lng, lnglat.lat]
+        center: lnglat.toArray()
         zoom: 14
       }
