@@ -17,8 +17,9 @@ get '/' do
 end
 
 get '/2574.js' do
+  template = File.join(settings.views, '2574.coffee')
   locals = { mapbox_access_token: ENV['MAPBOX_ACCESS_TOKEN'] }
-  coffee Tilt::StringTemplate.new('views/2574.coffee').render(Object.new, locals)
+  coffee Tilt::StringTemplate.new(template).render(Object.new, locals)
 end
 
 get '/2574.css' do
