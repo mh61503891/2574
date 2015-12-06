@@ -1,5 +1,5 @@
 mapboxgl.accessToken = "#{mapbox_access_token}"
-dishoge = 0.25
+dishoge = 0.2
 
 source = new mapboxgl.GeoJSONSource {
   data: {type: 'FeatureCollection', features: []}
