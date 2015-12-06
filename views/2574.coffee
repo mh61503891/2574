@@ -1,20 +1,13 @@
 mapboxgl.accessToken = "#{mapbox_access_token}"
-dishoge = 0.5
+dishoge = 0.25
 
 source = new mapboxgl.GeoJSONSource {
-  data: {
-    type: 'FeatureCollection'
-    features: []
-  }
+  data: {type: 'FeatureCollection', features: []}
 }
 centerPointSource = new mapboxgl.GeoJSONSource {
-  data: {
-    type: 'FeatureCollection'
-    features: []
-  }
+  data: {type: 'FeatureCollection', features: []}
 }
 data = {}
-
 
 xhr = new XMLHttpRequest()
 xhr.open('GET', encodeURI('data.geojson'))
