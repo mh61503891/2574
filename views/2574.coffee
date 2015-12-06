@@ -28,7 +28,7 @@ map = new mapboxgl.Map {
 
 
 ion.sound {
-  sounds: [{name: 'voice'} ]
+  sounds: [{name: 'poppo'} ]
   volume: 0.5
   path: "/"
   preload: true
@@ -107,7 +107,7 @@ paintCenter = (buffer) ->
   count = turf.count(buffer, data, 'pt_count').features[0].properties.pt_count
   paintCenter(buffer)
   if count > 0
-    ion.sound.play('voice')
+    ion.sound.play('poppo')
 
 # マップの中心を現在地にする
 @locate = ->
@@ -148,7 +148,6 @@ say = true
   naviEaseLocate()
   if count > 0
     if say
-      ion.sound.play('voice')
       say = false
   else
     say = true
