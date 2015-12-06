@@ -165,8 +165,3 @@ naviFunc = ->
     btn.style.background = '#1F8A70'
     naviFuncId = window.setInterval(naviFunc, 3000)
     isNaviMode = true
-
-# auto = ->
-#   @check()
-#
-# window.setInterval auto, 3000
