@@ -89,6 +89,11 @@ map.on 'style.load', ->
     }
 
 
+changeButton = (id, text, color) ->
+  btn = document.getElementById(id)
+  btn.innerHTML = text
+  btn.style.background = color
+
 @test = ->
   center = turf.point(map.getCenter().toArray())
   console.log 'center', center
@@ -101,6 +106,7 @@ map.on 'style.load', ->
 
 paintCenter = (buffer) ->
   centerPointSource.setData(buffer)
+
 @check = ->
   center = turf.point(map.getCenter().toArray())
   buffer = turf.buffer(center, dishoge, 'kilometers')
@@ -112,9 +118,7 @@ paintCenter = (buffer) ->
 # マップの中心を現在地にする
 @locate = ->
   return if not navigator.geolocation
-  btn = document.getElementById('locate-button')
-  btn.innerHTML = '取得中'
-  btn.style.background = '#1F8A70'
+  changeButton('locate-button', '取得中', '#1F8A70')
   navigator.geolocation.getCurrentPosition (position) ->
     coords = [position.coords.longitude, position.coords.latitude]
     target = new mapboxgl.LngLat.convert(coords).wrap().toArray()
@@ -122,15 +126,12 @@ paintCenter = (buffer) ->
       center: target
       zoom: 14
     }
-    btn = document.getElementById('locate-button')
-    btn.innerHTML = '現在地'
-    btn.style.background = '#ee8a65'
+    changeButton('locate-button', '現在地', '#ee8a65')
 
 naviEaseLocate = ->
   return if not navigator.geolocation
   navigator.geolocation.getCurrentPosition (position) ->
-    btn = document.getElementById('navi-button')
-    btn.innerHTML = 'ナビ:ON'
+    changeButton('navi-button', 'ナビ:ON', '#1F8A70')
     coords = [position.coords.longitude, position.coords.latitude]
     target = new mapboxgl.LngLat.convert(coords).wrap().toArray()
     map.easeTo {
@@ -138,35 +139,34 @@ naviEaseLocate = ->
       zoom: 14
     }
 
-# ナビ
-say = true
-@naviCheck = ->
-  center = turf.point(map.getCenter().toArray())
-  buffer = turf.buffer(center, dishoge, 'kilometers')
-  count = turf.count(buffer, data, 'pt_count').features[0].properties.pt_count
-  paintCenter(buffer)
-  naviEaseLocate()
-  if count > 0
-    if say
-      say = false
-  else
-    say = true
+class Navi
+  constructor: ->
+    @say = true
+    @isNaviMode = false
+    @naviFuncId = null
+    @naviId = null
+  check: ->
+    center = turf.point(map.getCenter().toArray())
+    buffer = turf.buffer(center, dishoge, 'kilometers')
+    count = turf.count(buffer, data, 'pt_count').features[0].properties.pt_count
+    paintCenter(buffer)
+    naviEaseLocate()
+    if count > 0
+      if @say
+        ion.sound.play('poppo')
+        @say = false
+    else
+      @say = true
+    return true
+  toggle: =>
+    if @isNaviMode
+      changeButton('navi-button', 'ナビ:OFF', '#ee8a65')
+      clearInterval(@naviFuncId)
+      @isNaviMode = false
+    else
+      changeButton('navi-button', '取得中', '#1F8A70')
+      @naviFuncId = setInterval(@check, 3000)
+      @isNaviMode = true
 
-isNaviMode = false
-naviFuncId = null
-naviId = null
-naviFunc = ->
-  @naviCheck()
-
-@navi = ->
-  if isNaviMode
-    btn = document.getElementById('navi-button')
-    btn.innerHTML = 'ナビ:OFF'
-    btn.style.background = '#ee8a65'
-    window.clearInterval(naviFuncId)
-  else
-    btn = document.getElementById('navi-button')
-    btn.innerHTML = '取得中'
-    btn.style.background = '#1F8A70'
-    naviFuncId = window.setInterval(naviFunc, 3000)
-    isNaviMode = true
+navi = new Navi()
+@navi = navi.toggle
