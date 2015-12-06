@@ -116,15 +116,15 @@ paintCenter = (buffer) ->
   btn.innerHTML = '取得中'
   btn.style.background = '#1F8A70'
   navigator.geolocation.getCurrentPosition (position) ->
-    btn = document.getElementById('locate-button')
-    btn.innerHTML = '現在地'
-    btn.style.background = '#ee8a65'
     coords = [position.coords.longitude, position.coords.latitude]
     target = new mapboxgl.LngLat.convert(coords).wrap().toArray()
     map.flyTo {
       center: target
       zoom: 14
     }
+    btn = document.getElementById('locate-button')
+    btn.innerHTML = '現在地'
+    btn.style.background = '#ee8a65'
 
 naviEaseLocate = ->
   return if not navigator.geolocation
