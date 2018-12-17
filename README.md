@@ -1,7 +1,5 @@
 # 2574
 
-2574.jp
-
 # Development
 
 ```sh
